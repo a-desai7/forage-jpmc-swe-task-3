@@ -26,10 +26,10 @@ class Graph extends Component<IProps, {}> {
       price_abc: 'float',
       price_def: 'float',
       ratio: 'float',
+      timestamp: 'date',
       upper_bound: 'float',
       lower_bound: 'float',
       trigger_alert: 'float',
-      timestamp: 'date',
     };
 
     if (window.perspective && window.perspective.worker()) {
@@ -40,15 +40,15 @@ class Graph extends Component<IProps, {}> {
       elem.load(this.table);
       elem.setAttribute('view', 'y_line');
       elem.setAttribute('row-pivots', '["timestamp"]');
-      elem.setAttribute('columns', '["ratio", "upper_bound", lower_bound", "trigger_alert"]');
+      elem.setAttribute('columns', '["ratio", "lower_bound", upper_bound", "trigger_alert"]');
       elem.setAttribute('aggregates', JSON.stringify({
         price_abc: 'avg',
         price_def: 'avg',
         ratio: 'avg',
+        timestamp: 'distinct count',
         upper_bound: 'avg',
         lower_bound: 'avg',
         trigger_alert: 'avg',
-        timestamp: 'distinct count',
       }));
     }
   }
